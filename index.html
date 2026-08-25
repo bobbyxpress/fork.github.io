@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Ember & Fork — Wood-fired plates, fresh breads and house desserts in Bengaluru.">
+<title>Ember & Fork — Restaurant Menu</title>
+<link rel="icon" href="favicon.png" type="image/png">
+<style>
+:root{
+  --bg:#30251d; --fg:#f4eee1; --card:#403128; --primary:#dc7836;
+  --primary-fg:#2f251d; --secondary:#493a2f; --muted:#493a2f;
+  --muted-fg:#c4b7a2; --accent:#e6c56d; --border:#665445;
+  --shadow:0 18px 40px -18px rgba(220,120,54,.45);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.hero{position:relative;overflow:hidden;min-height:620px;display:flex;align-items:center}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.40}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(48,37,29,.60),rgba(48,37,29,.70) 55%,var(--bg) 100%)}
+.hero-content{position:relative;z-index:1;width:min(1024px,100%);margin:auto;padding:80px 24px 105px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.logo{width:112px;height:112px;object-fit:contain}
+h1{font-size:clamp(3rem,7vw,4.25rem);line-height:1.05;margin:24px 0 0;font-weight:750;letter-spacing:-.04em}
+.gradient{background:linear-gradient(135deg,#dc7836,#e6c56d);-webkit-background-clip:text;background-clip:text;color:transparent}
+.kicker{margin-top:12px;font-size:13px;letter-spacing:.4em;text-transform:uppercase;color:var(--accent)}
+.hero-copy{max-width:680px;margin:24px 0 0;color:var(--muted-fg);font-size:16px;line-height:1.75}
+.cta{margin-top:30px;display:inline-flex;padding:13px 28px;border-radius:999px;background:var(--primary);color:var(--primary-fg);font-size:14px;font-weight:700;transition:.2s transform,.2s filter}
+.cta:hover{transform:scale(1.05);filter:brightness(1.08)}
+.container{width:min(1024px,100%);margin:auto;padding-left:24px;padding-right:24px}
+section{padding-top:64px}
+h2{font-size:30px;line-height:1.2;margin:0;font-weight:650}
+.about-grid{margin-top:24px;display:grid;grid-template-columns:2fr 1fr;gap:24px}
+.about-copy{color:var(--muted-fg);line-height:1.75;margin:0}
+.stats{display:flex;flex-direction:column;gap:12px;margin:0;padding:0;list-style:none}
+.plate{background:var(--card);border:1px solid var(--border);border-radius:16px;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.plate:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--primary)}
+.stat{padding:13px 16px}
+.stat-label{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted-fg);margin-bottom:4px}
+.stat-value{font-weight:600}
+#menu{padding-bottom:64px}
+.tabs{margin-top:24px;display:flex;flex-wrap:wrap;gap:8px}
+.tab{border:0;border-radius:999px;padding:9px 20px;background:var(--secondary);color:var(--fg);cursor:pointer;font-size:14px;font-weight:600;transition:.2s background,.2s color}
+.tab:hover{background:#58483a}
+.tab.active{background:var(--primary);color:var(--primary-fg)}
+.menu-grid{margin-top:32px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.menu-card{display:flex;gap:16px;padding:20px}
+.icon{font-size:30px;line-height:1}
+.item-main{flex:1;min-width:0}
+.item-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.item-name{margin:0;font-size:16px;font-weight:700}
+.price{font-weight:700;color:var(--primary);white-space:nowrap}
+.desc{margin:4px 0 0;font-size:14px;line-height:1.5;color:var(--muted-fg)}
+.tag{display:inline-block;margin-top:12px;padding:4px 10px;border:1px solid rgba(230,197,109,.5);border-radius:999px;font-size:12px;color:var(--accent)}
+footer{border-top:1px solid var(--border);background:rgba(64,49,40,.4)}
+.footer-grid{padding-top:56px;padding-bottom:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.footer-title{margin:0;font-size:18px}
+.footer-text{margin:12px 0 0;color:var(--muted-fg);font-size:14px;line-height:1.8}
+.footer-link{display:block;margin-top:5px;transition:color .2s}
+.footer-link:hover{color:var(--primary)}
+.copyright{padding-bottom:32px;text-align:center;color:var(--muted-fg);font-size:12px}
+@media(max-width:700px){
+  .hero{min-height:590px}
+  .hero-content{padding-top:60px;padding-bottom:90px}
+  .about-grid,.footer-grid,.menu-grid{grid-template-columns:1fr}
+  .menu-grid{gap:12px}
+  h2{font-size:28px}
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <img class="hero-img" src="hero.png" alt="Warm dining room at Ember & Fork">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <img class="logo" src="logo.png" alt="Ember & Fork logo">
+    <h1><span class="gradient">Ember &amp; Fork</span></h1>
+    <div class="kicker">Wood-fired kitchen</div>
+    <p class="hero-copy">A neighbourhood kitchen built around live fire. Every plate is cooked over charcoal and served the moment it leaves the grill.</p>
+    <a class="cta" href="#menu">View the menu</a>
+  </div>
+</header>
+
+<main>
+<section class="container" aria-labelledby="about-title">
+  <h2 id="about-title">About us</h2>
+  <div class="about-grid">
+    <p class="about-copy">Since 2014 we have run a single open kitchen where the grill never goes cold. Produce comes from local farms each morning, breads are pressed to order in the clay oven, and every sauce is made in-house. Whether it is a quick lunch or a long table dinner, we cook the way we would at home — generously and without shortcuts.</p>
+    <ul class="stats">
+      <li class="plate stat"><span class="stat-label">Est.</span><span class="stat-value">2014</span></li>
+      <li class="plate stat"><span class="stat-label">Seats</span><span class="stat-value">70 indoor · 20 terrace</span></li>
+      <li class="plate stat"><span class="stat-label">Kitchen</span><span class="stat-value">Charcoal &amp; clay oven</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="menu" class="container" aria-labelledby="menu-title">
+  <h2 id="menu-title">Our menu</h2>
+  <div id="tabs" class="tabs" role="tablist" aria-label="Menu categories"></div>
+  <div id="menu-grid" class="menu-grid"></div>
+</section>
+</main>
+
+<footer id="contact">
+  <div class="container footer-grid">
+    <div><h2 class="footer-title">Visit us</h2><p class="footer-text">42 Grove Street, Indiranagar<br>Bengaluru 560038</p></div>
+    <div><h2 class="footer-title">Hours</h2><p class="footer-text">Mon–Thu · 12:00 – 23:00<br>Fri–Sun · 11:30 – 00:00</p></div>
+    <div><h2 class="footer-title">Contact</h2><p class="footer-text"><a class="footer-link" href="tel:+919876543210">+91 98765 43210</a><a class="footer-link" href="mailto:hello@emberandfork.in">hello@emberandfork.in</a></p></div>
+  </div>
+  <div class="copyright">© <span id="year"></span> Ember &amp; Fork. All rights reserved.</div>
+</footer>
+
+<script>
+const MENU=[
+ {id:"starters",label:"Starters",items:[
+  {name:"Charred Corn Ribs",desc:"Chilli butter, lime, cotija",price:"₹260",icon:"🌽",tag:"Veg"},
+  {name:"Smoked Paneer Tikka",desc:"Hung curd marinade, mint chutney",price:"₹320",icon:"🧀",tag:"Chef's pick"},
+  {name:"Crispy Chilli Mushroom",desc:"Wok tossed, spring onion, sesame",price:"₹290",icon:"🍄",tag:"Veg"},
+  {name:"Tandoori Wings",desc:"Six pieces, burnt garlic aioli",price:"₹340",icon:"🍗"}
+ ]},
+ {id:"mains",label:"Mains",items:[
+  {name:"Ember Butter Chicken",desc:"Slow simmered tomato gravy, cream",price:"₹460",icon:"🍛",tag:"Signature"},
+  {name:"Dal Makhani",desc:"Twelve hours on low heat, white butter",price:"₹340",icon:"🥘",tag:"Veg"},
+  {name:"Wood-Fired Lamb Chops",desc:"Rosemary rub, roast potatoes",price:"₹690",icon:"🍖"},
+  {name:"Truffle Mushroom Risotto",desc:"Arborio rice, parmesan, thyme",price:"₹480",icon:"🍚",tag:"Veg"},
+  {name:"Grilled River Sole",desc:"Lemon butter, seasonal greens",price:"₹560",icon:"🐟"},
+  {name:"Paneer Lababdar",desc:"Cashew tomato gravy, kasuri methi",price:"₹390",icon:"🍲",tag:"Veg"}
+ ]},
+ {id:"breads",label:"Breads & Rice",items:[
+  {name:"Butter Naan",desc:"Clay oven, cultured butter",price:"₹80",icon:"🫓"},
+  {name:"Garlic Laccha Paratha",desc:"Flaky layers, roasted garlic",price:"₹110",icon:"🥯"},
+  {name:"Hyderabadi Dum Biryani",desc:"Chicken or veg, saffron, raita",price:"₹420",icon:"🍚",tag:"Popular"},
+  {name:"Burnt Garlic Fried Rice",desc:"Wok tossed with garden veg",price:"₹280",icon:"🍜",tag:"Veg"}
+ ]},
+ {id:"desserts",label:"Desserts",items:[
+  {name:"Molten Chocolate Cake",desc:"Vanilla bean ice cream",price:"₹260",icon:"🍫",tag:"Chef's pick"},
+  {name:"Saffron Rasmalai",desc:"Pistachio crumble, cold set",price:"₹220",icon:"🍮"},
+  {name:"Baked Cheesecake",desc:"Berry compote, biscuit base",price:"₹280",icon:"🍰"}
+ ]},
+ {id:"drinks",label:"Drinks",items:[
+  {name:"Masala Cold Brew",desc:"18-hour brew, spiced syrup",price:"₹190",icon:"☕"},
+  {name:"Kokum Cooler",desc:"Kokum, cumin, soda",price:"₹170",icon:"🥤"},
+  {name:"Fresh Lime Soda",desc:"Sweet, salted or mixed",price:"₹120",icon:"🍋"},
+  {name:"House Iced Tea",desc:"Peach or lemongrass",price:"₹160",icon:"🧊"}
+ ]}
+];
+let active="starters";
+const tabs=document.getElementById("tabs"), grid=document.getElementById("menu-grid");
+function render(){
+ tabs.innerHTML="";
+ MENU.forEach(s=>{
+  const b=document.createElement("button");
+  b.className="tab"+(s.id===active?" active":"");
+  b.textContent=s.label;
+  b.type="button"; b.setAttribute("role","tab"); b.setAttribute("aria-selected",s.id===active);
+  b.onclick=()=>{active=s.id;render()};
+  tabs.appendChild(b);
+ });
+ const section=MENU.find(s=>s.id===active);
+ grid.innerHTML=section.items.map(i=>`
+  <article class="plate menu-card">
+    <span class="icon" aria-hidden="true">${i.icon}</span>
+    <div class="item-main">
+      <div class="item-head"><h3 class="item-name">${i.name}</h3><span class="price">${i.price}</span></div>
+      <p class="desc">${i.desc}</p>
+      ${i.tag?`<span class="tag">${i.tag}</span>`:""}
+    </div>
+  </article>`).join("");
+}
+document.getElementById("year").textContent=new Date().getFullYear();
+render();
+</script>
+</body>
+</html>
